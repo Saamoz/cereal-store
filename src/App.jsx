@@ -1,6 +1,5 @@
-import React, { useEffect , useState } from 'react';
-import './index.css'
-import { MessageCircle, X } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { MessageCircle, AlertCircle, ChevronDown, Menu } from 'lucide-react';
 
 const TypingIndicator = () => (
   <div className="flex space-x-2 p-3 bg-gray-100 rounded-lg w-16">
@@ -44,12 +43,12 @@ const ProductPage = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <div className="border-b">
-        <div className=".max-w-7xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
+      <div className="bg-[#004740]">
+        <div className="max-w-7xl mx-auto px-4 py-4">
+          <div className="flex items-center justify-between text-white">
             {/* Logo */}
-            <a href="/" className="text-2xl font-bold text-blue-600">
-              hola
+            <a href="/" className="text-2xl font-bold text-white">
+              voilà
             </a>
 
             {/* Search */}
@@ -57,7 +56,7 @@ const ProductPage = () => {
               <input
                 type="text"
                 placeholder="Find a product"
-                className="w-full px-3 py-2 border rounded"
+                className="w-full px-3 py-2 border rounded text-gray-800"
               />
             </div>
 
@@ -65,7 +64,7 @@ const ProductPage = () => {
             <div className="flex items-center gap-6">
               <div className="flex items-center gap-2">
                 <span>English</span>
-                <span>▼</span>
+                <ChevronDown className="h-4 w-4" />
               </div>
               <div className="flex items-center gap-2">
                 <span>Sign in</span>
@@ -74,6 +73,21 @@ const ProductPage = () => {
                 <span>$0.00</span>
               </div>
             </div>
+          </div>
+
+          {/* Secondary Navigation */}
+          <div className="flex space-x-6 mt-4 text-white">
+            <button className="flex items-center gap-2">
+              <Menu className="h-4 w-4" />
+              Browse
+              <ChevronDown className="h-4 w-4" />
+            </button>
+            {['Promotions', 'Favourites', 'Lists', 'Regulars', 'Recipes'].map((item) => (
+              <button key={item} className="flex items-center gap-2">
+                {item}
+                <ChevronDown className="h-4 w-4" />
+              </button>
+            ))}
           </div>
         </div>
       </div>
@@ -104,13 +118,51 @@ const ProductPage = () => {
                   </div>
                   <div className="text-sm text-gray-400">This item is not available</div>
                 </div>
+                {/* Exclamation Mark Icon */}
+                <div className="absolute -top-2 -right-2 bg-red-500 rounded-full p-1 text-white">
+                  <AlertCircle className="h-4 w-4" />
+                  <div className="absolute invisible group-hover:visible bg-gray-800 text-white text-sm py-2 px-4 rounded -top-12 right-0 w-64">
+                    This product has been discontinued. Sorry for any inconvenience!
+                  </div>
+                </div>
               </div>
               
-              <div className="p-4 border rounded hover:border-blue-500 cursor-pointer">
+              <div className="p-4 border rounded hover:border-[#004740] cursor-pointer">
                 <div className="flex justify-between">
                   <span>Family Size - 480g</span>
                   <span>$7.99</span>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Additional Information */}
+        <div className="mt-12 space-y-8">
+          <div className="border-t pt-8">
+            <h2 className="text-2xl font-bold mb-4">Brand</h2>
+            <p>Private Selection</p>
+          </div>
+
+          <div className="border-t pt-8">
+            <h2 className="text-2xl font-bold mb-4">Ingredients</h2>
+            <p className="text-gray-700">Sugar, Whole Grain Corn Flour, Wheat Flour, Whole Grain Oat Flour, Corn Bran, Maltodextrin, Oat Hull Fibre, Hydrogenated Coconut And Vegetable Oil, Salt, Natural Flavour, Vitamins And Minerals.</p>
+          </div>
+
+          <div className="border-t pt-8">
+            <h2 className="text-2xl font-bold mb-4">Nutritional Information</h2>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="border-b py-2">
+                <span className="font-bold">Calories:</span> 150 per 39g serving
+              </div>
+              <div className="border-b py-2">
+                <span className="font-bold">Total Fat:</span> 1.5g
+              </div>
+              <div className="border-b py-2">
+                <span className="font-bold">Carbohydrates:</span> 34g
+              </div>
+              <div className="border-b py-2">
+                <span className="font-bold">Protein:</span> 2g
               </div>
             </div>
           </div>
@@ -120,7 +172,7 @@ const ProductPage = () => {
       {/* Chat Button */}
       <button
         onClick={() => setIsChatOpen(true)}
-        className="fixed bottom-4 right-4 bg-blue-500 text-white p-3 rounded-full shadow-lg"
+        className="fixed bottom-4 right-4 bg-[#004740] text-white p-3 rounded-full shadow-lg"
       >
         <MessageCircle className="h-6 w-6" />
       </button>
@@ -128,13 +180,13 @@ const ProductPage = () => {
       {/* Chat Window */}
       {isChatOpen && (
         <div className="fixed bottom-20 right-4 w-80 bg-white rounded-lg shadow-xl border">
-          <div className="p-3 border-b flex justify-between items-center bg-blue-500 text-white">
+          <div className="p-3 border-b flex justify-between items-center bg-[#004740] text-white">
             <h3 className="font-bold">Customer Support</h3>
             <button 
               onClick={() => setIsChatOpen(false)}
-              className="text-white text-xl font-bold hover:text-gray-200"
+              className="hover:bg-[#005850] p-1 rounded"
             >
-              ×
+              <span className="text-lg">×</span>
             </button>
           </div>
           
@@ -147,7 +199,7 @@ const ProductPage = () => {
                 <div
                   className={`max-w-[80%] p-2 rounded ${
                     message.sender === 'user'
-                      ? 'bg-blue-500 text-white'
+                      ? 'bg-[#004740] text-white'
                       : 'bg-gray-100'
                   }`}
                 >
@@ -165,7 +217,7 @@ const ProductPage = () => {
           <div className="p-3 border-t">
             <button
               onClick={addNextMessage}
-              className="w-full bg-blue-500 text-white py-2 rounded"
+              className="w-full bg-[#004740] text-white py-2 rounded"
               disabled={messageIndex >= scriptedMessages.length}
             >
               Send Message
