@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { ShoppingCart, Menu, Search, User, ChevronDown, MessageCircle, AlertCircle, X } from 'lucide-react';
+import './index.css'
+import { MessageCircle, X } from 'lucide-react';
 
 const ProductPage = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -20,95 +21,76 @@ const ProductPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white relative">
+    <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="bg-white border-b">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
+      <div className="border-b">
+        <div className="max-w-7xl mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
             {/* Logo */}
-            <div className="flex items-center">
-              <a href="/" className="text-2xl font-bold text-cyan-500">
-                voilà
-              </a>
-            </div>
+            <a href="/" className="text-2xl font-bold text-blue-600">
+              voilà
+            </a>
 
-            {/* Search Bar */}
-            <div className="flex-1 max-w-2xl mx-8">
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Find a product"
-                  className="w-full px-4 py-2 border rounded-lg"
-                />
-                <button className="absolute right-2 top-2">
-                  <Search className="h-5 w-5 text-gray-400" />
-                </button>
-              </div>
+            {/* Search */}
+            <div className="flex-1 max-w-lg mx-8">
+              <input
+                type="text"
+                placeholder="Find a product"
+                className="w-full px-3 py-2 border rounded"
+              />
             </div>
 
             {/* Navigation */}
-            <div className="flex items-center space-x-4">
-              <button className="flex items-center text-sm">
-                English
-                <ChevronDown className="h-4 w-4 ml-1" />
-              </button>
-              <button className="flex items-center text-sm">
-                <User className="h-5 w-5 mr-1" />
-                Sign in
-              </button>
-              <button className="flex items-center space-x-2 bg-cyan-500 text-white px-4 py-2 rounded">
-                <ShoppingCart className="h-5 w-5" />
+            <div className="flex items-center gap-6">
+              <div className="flex items-center gap-2">
+                <span>English</span>
+                <span>▼</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span>Sign in</span>
+              </div>
+              <div className="flex items-center gap-2">
                 <span>$0.00</span>
-              </button>
+              </div>
             </div>
           </div>
         </div>
-      </header>
+      </div>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-8">
+      <main className="max-w-7xl mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Product Images */}
-          <div className="space-y-4">
-            <div className="border rounded-lg p-4">
-              <img
-                src="/api/placeholder/400/400"
-                alt="Angel Food Cake Cereal"
-                className="w-full h-auto"
-              />
-            </div>
+          {/* Product Image */}
+          <div>
+            <img
+              src="https://www.cerealously.net/wp-content/uploads/2020/08/new-funfetti-cereal-review-box.jpg"
+              alt="Angel Food Cake Cereal"
+              className="w-full"
+            />
           </div>
 
           {/* Product Info */}
-          <div className="space-y-4">
-            <h1 className="text-2xl font-bold">Angel Food Cake Cereal</h1>
+          <div className="space-y-6">
+            <h1 className="text-3xl font-bold text-gray-900">Angel Food Cake Cereal</h1>
             
             {/* Size Options */}
             <div className="space-y-4">
-              <div className="relative">
-                <button 
-                  disabled
-                  className="w-full p-4 border rounded-lg bg-gray-100 text-gray-400 flex justify-between items-center group"
-                >
-                  <span>Personal Size - 280g</span>
-                  <span>$4.99</span>
-                  
-                  {/* Tooltip */}
-                  <div className="absolute invisible group-hover:visible bg-gray-800 text-white text-sm py-2 px-4 rounded -top-12 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
-                    <div className="flex items-center">
-                      <AlertCircle className="h-4 w-4 mr-2" />
-                      This item is not available
-                    </div>
+              <div className="relative group">
+                <div className="p-4 border rounded bg-gray-100 text-gray-400">
+                  <div className="flex justify-between">
+                    <span>Personal Size - 280g</span>
+                    <span>$4.99</span>
                   </div>
-                </button>
+                  <div className="text-sm text-gray-400">This item is not available</div>
+                </div>
               </div>
               
-              <button className="w-full p-4 border rounded-lg hover:border-cyan-500">
-                <div className="flex justify-between items-center">
+              <div className="p-4 border rounded hover:border-blue-500 cursor-pointer">
+                <div className="flex justify-between">
                   <span>Family Size - 480g</span>
                   <span>$7.99</span>
                 </div>
-              </button>
+              </div>
             </div>
           </div>
         </div>
@@ -117,31 +99,31 @@ const ProductPage = () => {
       {/* Chat Button */}
       <button
         onClick={() => setIsChatOpen(true)}
-        className="fixed bottom-4 right-4 bg-cyan-500 text-white p-4 rounded-full shadow-lg hover:bg-cyan-600"
+        className="fixed bottom-4 right-4 bg-blue-500 text-white p-3 rounded-full shadow-lg"
       >
         <MessageCircle className="h-6 w-6" />
       </button>
 
       {/* Chat Window */}
       {isChatOpen && (
-        <div className="fixed bottom-20 right-4 w-96 bg-white rounded-lg shadow-xl border">
-          <div className="p-4 border-b flex justify-between items-center bg-cyan-500 text-white rounded-t-lg">
+        <div className="fixed bottom-20 right-4 w-80 bg-white rounded-lg shadow-xl border">
+          <div className="p-3 border-b flex justify-between items-center bg-blue-500 text-white">
             <h3 className="font-bold">Customer Support</h3>
             <button onClick={() => setIsChatOpen(false)}>
               <X className="h-5 w-5" />
             </button>
           </div>
           
-          <div className="h-96 overflow-y-auto p-4 space-y-4">
+          <div className="h-80 overflow-y-auto p-4 space-y-4">
             {chatMessages.map((message, index) => (
               <div
                 key={index}
                 className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 <div
-                  className={`max-w-[80%] p-3 rounded-lg ${
+                  className={`max-w-[80%] p-2 rounded ${
                     message.sender === 'user'
-                      ? 'bg-cyan-500 text-white'
+                      ? 'bg-blue-500 text-white'
                       : 'bg-gray-100'
                   }`}
                 >
@@ -151,10 +133,10 @@ const ProductPage = () => {
             ))}
           </div>
           
-          <div className="p-4 border-t">
+          <div className="p-3 border-t">
             <button
               onClick={addNextMessage}
-              className="w-full bg-cyan-500 text-white py-2 rounded hover:bg-cyan-600"
+              className="w-full bg-blue-500 text-white py-2 rounded"
             >
               Send Message
             </button>
