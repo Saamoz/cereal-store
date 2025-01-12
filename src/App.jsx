@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect , useState } from 'react';
 import './index.css'
 import { MessageCircle, X } from 'lucide-react';
 
@@ -45,7 +45,7 @@ const ProductPage = () => {
     <div className="min-h-screen bg-white">
       {/* Header */}
       <div className="border-b">
-        <div className="mx-auto px-4 py-4">
+        <div className=".max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <a href="/" className="text-2xl font-bold text-blue-600">
