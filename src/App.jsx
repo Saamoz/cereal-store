@@ -2,16 +2,37 @@ import React, { useState } from 'react';
 import './index.css'
 import { MessageCircle, X } from 'lucide-react';
 
+const TypingIndicator = () => (
+  <div className="flex space-x-2 p-3 bg-gray-100 rounded-lg w-16">
+    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+  </div>
+);
+
 const ProductPage = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [chatMessages, setChatMessages] = useState([]);
   const [messageIndex, setMessageIndex] = useState(0);
+  const [isTyping, setIsTyping] = useState(false);
 
   const scriptedMessages = [
     { sender: 'user', text: 'Hi, I\'m interested in the personal size Angel Food Cake cereal.' },
     { sender: 'support', text: 'The personal size has been indefinitely discontinued. We apologize for any inconvenience.' },
     { sender: 'support', text: 'You can order the family size though :)' }
   ];
+
+  useEffect(() => {
+    if (messageIndex > 0 && messageIndex < scriptedMessages.length) {
+      setIsTyping(true);
+      const timer = setTimeout(() => {
+        setIsTyping(false);
+        setChatMessages(prev => [...prev, scriptedMessages[messageIndex]]);
+        setMessageIndex(prev => prev + 1);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [messageIndex]);
 
   const addNextMessage = () => {
     if (messageIndex < scriptedMessages.length) {
@@ -24,11 +45,11 @@ const ProductPage = () => {
     <div className="min-h-screen bg-white">
       {/* Header */}
       <div className="border-b">
-        <div className="max-w-7xl mx-auto px-4 py-4">
+        <div className="mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <a href="/" className="text-2xl font-bold text-blue-600">
-              voilà
+              hola
             </a>
 
             {/* Search */}
@@ -109,8 +130,11 @@ const ProductPage = () => {
         <div className="fixed bottom-20 right-4 w-80 bg-white rounded-lg shadow-xl border">
           <div className="p-3 border-b flex justify-between items-center bg-blue-500 text-white">
             <h3 className="font-bold">Customer Support</h3>
-            <button onClick={() => setIsChatOpen(false)}>
-              <X className="h-5 w-5" />
+            <button 
+              onClick={() => setIsChatOpen(false)}
+              className="text-white text-xl font-bold hover:text-gray-200"
+            >
+              ×
             </button>
           </div>
           
@@ -131,12 +155,18 @@ const ProductPage = () => {
                 </div>
               </div>
             ))}
+            {isTyping && (
+              <div className="flex justify-start">
+                <TypingIndicator />
+              </div>
+            )}
           </div>
           
           <div className="p-3 border-t">
             <button
               onClick={addNextMessage}
               className="w-full bg-blue-500 text-white py-2 rounded"
+              disabled={messageIndex >= scriptedMessages.length}
             >
               Send Message
             </button>
