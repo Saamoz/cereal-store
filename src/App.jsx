@@ -9,6 +9,8 @@ const TypingIndicator = () => (
   </div>
 );
 
+import cerealImage from './assets/cereal.jpg';
+
 const ProductPage = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [chatMessages, setChatMessages] = useState([]);
@@ -103,7 +105,7 @@ const ProductPage = () => {
           <div className="space-y-6">
             <div className="relative">
               <img
-                src="/public/cereal.jpg"
+                src={cerealImage}
                 alt="Angel Food Cake Cereal - Personal Size"
                 className="w-full max-w-sm mx-auto cursor-pointer filter grayscale opacity-75"
                 onClick={() => setIsZoomed(true)}
@@ -131,7 +133,7 @@ const ProductPage = () => {
           <div className="space-y-6">
             <div className="relative">
               <img
-                src="/public/cereal.jpg"
+                src={cerealImage}
                 alt="Angel Food Cake Cereal - Family Size"
                 className="w-full max-w-sm mx-auto"
               />
@@ -255,7 +257,7 @@ const ProductPage = () => {
               <X className="h-8 w-8" />
             </button>
             <img
-              src="/public/cereal.jpg"
+              src={cerealImage}
               alt="Angel Food Cake Cereal - Zoomed"
               className="w-full"
             />
