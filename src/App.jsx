@@ -95,7 +95,7 @@ const ProductPage = () => {
         <div className="flex-1">
           <div className="grid grid-cols-3 gap-6">
             {/* Discontinued Product */}
-            <div className="space-y-4">
+            <div className="space-y-4 bg-gray-100 p-6 rounded-lg">
               <div className="font-medium text-lg text-gray-500">Personal Size - 280g</div>
               <div className="relative">
                 <img
@@ -117,7 +117,7 @@ const ProductPage = () => {
             </div>
 
             {/* Available Product */}
-            <div className="space-y-4">
+            <div className="space-y-4 bg-gray-100 p-6 rounded-lg">
               <div className="font-medium text-lg">Family Size - 480g</div>
               <div className="relative">
                 <img
