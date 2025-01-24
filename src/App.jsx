@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { MessageCircle, AlertCircle, ChevronDown, Menu, X } from 'lucide-react';
 import cerealImage from './assets/cereal.jpg';
+import adImage from './assets/ad.jpg';
 
 const TypingIndicator = () => (
   <div className="flex space-x-2 p-3 bg-gray-100 rounded-lg w-16">
@@ -15,6 +16,7 @@ const ProductPage = () => {
   const [chatMessages, setChatMessages] = useState([]);
   const [messageIndex, setMessageIndex] = useState(0);
   const [isTyping, setIsTyping] = useState(false);
+  const [inputMessage, setInputMessage] = useState('');
 
   const scriptedMessages = [
     { sender: 'user', text: 'Hi, I\'m interested in the personal size Angel Food Cake cereal.' },
@@ -29,15 +31,17 @@ const ProductPage = () => {
         setIsTyping(false);
         setChatMessages(prev => [...prev, scriptedMessages[messageIndex]]);
         setMessageIndex(prev => prev + 1);
-      }, 4000);
+      }, 3000);
       return () => clearTimeout(timer);
     }
   }, [messageIndex]);
 
   const addNextMessage = () => {
     if (messageIndex < scriptedMessages.length) {
-      setChatMessages(prev => [...prev, scriptedMessages[messageIndex]]);
+      const messageToSend = inputMessage.trim() || 'Hi, I\'m interested in the personal size Angel Food Cake cereal.';
+      setChatMessages(prev => [...prev, { sender: 'user', text: messageToSend }]);
       setMessageIndex(prev => prev + 1);
+      setInputMessage('');
     }
   };
 
@@ -90,10 +94,10 @@ const ProductPage = () => {
       </div>
 
       {/* Main Content with Chat */}
-      <div className="flex w-full max-w-7xl mx-auto px-4 py-8 gap-8">
+      <div className="flex w-full max-w-5xl mx-auto px-4 py-8 gap-8">
         {/* Product Grid */}
         <div className="flex-1">
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 gap-6">
             {/* Discontinued Product */}
             <div className="space-y-4 bg-gray-100 p-6 rounded-lg">
               <div className="font-medium text-lg text-gray-500">Personal Size - 280g</div>
@@ -154,21 +158,33 @@ const ProductPage = () => {
           </div>
         </div>
 
+        {/* Advertisement Section */}
+        <div className="w-64 h-64 sticky top-4">
+          <img
+            src={adImage}
+            alt="Advertisement"
+            className="w-full h-full object-cover rounded-lg shadow-lg"
+          />
+          <div className="absolute top-2 right-2 text-xs text-white bg-black bg-opacity-50 px-2 py-1 rounded">
+            Advertisement
+          </div>
+        </div>
+
         {/* Chat Section */}
         {isChatOpen ? (
-          <div className="w-96">
-            <div className="sticky top-4 bg-white rounded-lg shadow-xl border">
-              <div className="p-3 border-b flex justify-between items-center bg-[#004740] text-white rounded-t-lg">
-                <h3 className="font-bold">Customer Support</h3>
+          <div className="fixed bottom-24 right-8 w-[32rem] z-50">
+            <div className="bg-white rounded-lg shadow-xl border">
+              <div className="p-4 border-b flex justify-between items-center bg-[#004740] text-white rounded-t-lg">
+                <h3 className="font-bold text-lg">Customer Support</h3>
                 <button 
                   onClick={() => setIsChatOpen(false)}
                   className="hover:bg-[#005850] p-1 rounded"
                 >
-                  <X className="h-4 w-4" />
+                  <X className="h-5 w-5" />
                 </button>
               </div>
               
-              <div className="h-96 overflow-y-auto p-4 space-y-4">
+              <div className="h-[32rem] overflow-y-auto p-6 space-y-4">
                 {chatMessages.map((message, index) => (
                   <div
                     key={index}
@@ -192,7 +208,14 @@ const ProductPage = () => {
                 )}
               </div>
               
-              <div className="p-3 border-t">
+              <div className="p-3 border-t space-y-3">
+                <input
+                  type="text"
+                  value={inputMessage}
+                  onChange={(e) => setInputMessage(e.target.value)}
+                  placeholder="Type your message..."
+                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-[#004740]"
+                />
                 <button
                   onClick={addNextMessage}
                   className="w-full bg-[#004740] text-white py-2 px-4 rounded hover:bg-[#003730] transition-colors"
