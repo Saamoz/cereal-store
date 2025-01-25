@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { MessageCircle, AlertCircle, ChevronDown, Menu, X } from 'lucide-react';
 import cerealImage from './assets/cereal.jpg';
-import adImage from './assets/ad.jpg';
+import adImage from './assets/ad.png';
 
 const TypingIndicator = () => (
   <div className="flex space-x-2 p-3 bg-gray-100 rounded-lg w-16">
@@ -31,7 +31,7 @@ const ProductPage = () => {
         setIsTyping(false);
         setChatMessages(prev => [...prev, scriptedMessages[messageIndex]]);
         setMessageIndex(prev => prev + 1);
-      }, 3000);
+      }, 4000);
       return () => clearTimeout(timer);
     }
   }, [messageIndex]);
@@ -94,7 +94,18 @@ const ProductPage = () => {
       </div>
 
       {/* Main Content with Chat */}
-      <div className="flex w-full max-w-5xl mx-auto px-4 py-8 gap-8">
+      <div className="w-full max-w-5xl mx-auto px-4 py-8">
+        {/* Advertisement Banner */}
+        <div className="w-full h-32 mb-8">
+          <img
+            src={adImage}
+            alt="Advertisement"
+            className="w-full h-full object-cover rounded-lg shadow-lg"
+          />
+          <div className="absolute top-2 right-2 text-xs text-white bg-black bg-opacity-50 px-2 py-1 rounded">
+            Advertisement
+          </div>
+        </div>
         {/* Product Grid */}
         <div className="flex-1">
           <div className="grid grid-cols-2 gap-6">
@@ -159,7 +170,7 @@ const ProductPage = () => {
         </div>
 
         {/* Advertisement Section */}
-        <div className="w-64 h-64 sticky top-4">
+        <div className="w-64 h-64 sticky top-4 ml-32">
           <img
             src={adImage}
             alt="Advertisement"
