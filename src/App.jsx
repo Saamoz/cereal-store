@@ -102,7 +102,7 @@ const ProductPage = () => {
             alt="Advertisement"
             className="w-full h-full object-cover rounded-lg shadow-lg"
           />
-          <div className="absolute top-2 left-2 text-xs text-white bg-black bg-opacity-50 px-2 py-1 rounded">
+          <div className="absolute bottom-2 left-2 text-xs text-white bg-black bg-opacity-50 px-2 py-1 rounded">
             Advertisement
           </div>
         </div>
