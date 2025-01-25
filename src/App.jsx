@@ -96,13 +96,13 @@ const ProductPage = () => {
       {/* Main Content with Chat */}
       <div className="w-full max-w-5xl mx-auto px-4 py-8">
         {/* Advertisement Banner */}
-        <div className="w-full h-32 mb-8">
+        <div className="w-full h-32 mb-8 relative">
           <img
             src={adImage}
             alt="Advertisement"
             className="w-full h-full object-cover rounded-lg shadow-lg"
           />
-          <div className="absolute top-2 right-2 text-xs text-white bg-black bg-opacity-50 px-2 py-1 rounded">
+          <div className="absolute top-2 left-2 text-xs text-white bg-black bg-opacity-50 px-2 py-1 rounded">
             Advertisement
           </div>
         </div>
