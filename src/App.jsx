@@ -100,7 +100,7 @@ const ProductPage = () => {
           <img
             src={adImage}
             alt="Advertisement"
-            className="w-full h-full object-cover rounded-lg shadow-lg"
+            className="w-full h-full object-contain rounded-lg shadow-lg"
           />
           <div className="absolute bottom-2 left-2 text-xs text-white bg-black bg-opacity-50 px-2 py-1 rounded">
             Advertisement
@@ -111,7 +111,7 @@ const ProductPage = () => {
           <div className="grid grid-cols-2 gap-6">
             {/* Discontinued Product */}
             <div className="space-y-4 bg-gray-100 p-6 rounded-lg">
-              <div className="font-medium text-lg text-gray-500">Personal Size - 280g</div>
+              <div className="font-large text-3xl text-gray-500 font-semibold">Personal Size - 280g</div>
               <div className="relative">
                 <img
                   src={cerealImage}
@@ -133,7 +133,7 @@ const ProductPage = () => {
 
             {/* Available Product */}
             <div className="space-y-4 bg-gray-100 p-6 rounded-lg">
-              <div className="font-medium text-lg">Family Size - 480g</div>
+              <div className="font-large text-3xl font-semibold">Family Size - 480g</div>
               <div className="relative">
                 <img
                   src={cerealImage}
@@ -166,18 +166,6 @@ const ProductPage = () => {
               <h2 className="text-2xl font-bold mb-4">Nutrition Facts</h2>
               {/* Nutrition table content remains the same */}
             </div>
-          </div>
-        </div>
-
-        {/* Advertisement Section */}
-        <div className="w-64 h-64 sticky top-4 ml-32">
-          <img
-            src={adImage}
-            alt="Advertisement"
-            className="w-full h-full object-cover rounded-lg shadow-lg"
-          />
-          <div className="absolute top-2 right-2 text-xs text-white bg-black bg-opacity-50 px-2 py-1 rounded">
-            Advertisement
           </div>
         </div>
 
