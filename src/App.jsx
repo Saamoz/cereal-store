@@ -111,7 +111,7 @@ const ProductPage = () => {
           <div className="grid grid-cols-2 gap-6">
             {/* Discontinued Product */}
             <div className="space-y-4 bg-gray-100 p-6 rounded-lg">
-              <div className="font-large text-3xl text-gray-500 font-semibold">Personal Size - 280g</div>
+              <div className="font-large text-3xl text-gray-500 font-semibold">Personal Size - 540g</div>
               <div className="relative">
                 <img
                   src={cerealImage}
@@ -133,7 +133,7 @@ const ProductPage = () => {
 
             {/* Available Product */}
             <div className="space-y-4 bg-gray-100 p-6 rounded-lg">
-              <div className="font-large text-3xl font-semibold">Family Size - 480g</div>
+              <div className="font-large text-3xl font-semibold">Family Size - 1620g</div>
               <div className="relative">
                 <img
                   src={cerealImage}
